@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #222;
+}
+
+/* Elements */
+i {
+    margin-right: .4rem;
+}
+
+/* Jumbotron */
+.jumbotron {
+    margin-top: 2rem;
+}
+
+/* Card */
