@@ -26,6 +26,7 @@ $("#addTrainBtn").on('click', function (event) {
     var firstTrain = $("#firstTrainInput").val();
     var frequency = $("#frequencyInput").val();
 
+    // Creates local "temporary" object for holding train data
     var newTrain = {
         name: trainName,
         destination: destination,
@@ -37,6 +38,12 @@ $("#addTrainBtn").on('click', function (event) {
     console.log(newTrain);
     database.push(newTrain);
 
+    $("#nameInput").val("");
+    $("#destinationInput").val("");
+    $("#firstTrainInput").val("");
+    $("#frequencyInput").val("");
 
+    return false;
 
-})
+});
+
