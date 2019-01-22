@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Train-Scheduler by Dendevpro</title>
 
     <!-- Bootstrap -->
@@ -19,6 +19,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js" integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA="
         crossorigin="anonymous"></script>
 
+    <!-- Normalize CSS Link -->
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <!-- CSS Link -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
@@ -28,30 +30,37 @@
 
 </head>
 
-<body>
+<body class="img-responsive">
 
-    <header>
 
-        <div class="container">
-            <div class="jumbotron bg-danger text-white">
-                <h1 class="text-center">Train Scheduler</h1>
-            </div>
-        </div>
+    <div class="container">
+        <header>
 
-    </header>
-
-    <section id="content">
-
-        <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-lg-3 col-md-4" id="timeColumn">
+                    <div class="card" id="timeCard">
+                        <h4 id="currentTime"><em id="timeText">Current Time</em>&nbsp;&nbsp;</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jumbotron-fluid text-center" id="header">
+                <img src="assets/images/train-logo.svg" id="trainLogo" alt="train-logo">
+            </div>
+        </header>
+
+
+        <section id="content">
+
+            <div class="row">
+                <div class="col-lg-9 col-md-12">
                     <div class="card mb-4">
-                        <div class="card-header bg-danger text-white">
+                        <div class="card-header text-white">
                             <i class="fas fa-clock"></i>
                             Train Schedule
                         </div>
                         <div class="card-body">
-                            <table class="table table-sm table-hover" id='employee-table'>
+                            <table class="table table-sm table-hover" id='trainTable'>
                                 <thead>
                                     <tr>
                                         <th scope="col">Train Name</th>
@@ -68,12 +77,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
+                <div class="col-lg-3 col-md-12">
                     <!-- Add Train  -->
                     <div class="card mb-4">
-                        <div class="card-header bg-danger text-white">
+                        <div class="card-header text-white">
                             <i class="fas fa-train"></i>
                             Add Train
                         </div>
@@ -82,31 +89,33 @@
                             <!-- Entry Form -->
                             <form>
                                 <div class="form-group">
-                                    <label for="name-input">Train Name</label>
-                                    <input class="form-control" id="name-input" placeholder="" type="text">
+                                    <label for="nameInput">Train Name</label>
+                                    <input class="form-control" id="nameInput" placeholder="" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label for="destination-input">Destination</label>
-                                    <input class="form-control" id="destination-input" placeholder="" type="text">
+                                    <label for="destinationInput">Destination</label>
+                                    <input class="form-control" id="destinationInput" placeholder="" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label for="train-time-input">First Train Time (HH:mm - military time)</label>
-                                    <input class="form-control" id="train-time-input" placeholder="" type="text">
+                                    <label for="firstTrainInput">First Train Time<br>(HH:mm - military time)</label>
+                                    <input class="form-control" id="firstTrainInput" placeholder="" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label for="frequency-input">Frequency (min)</label>
-                                    <input class="form-control" id="rate-input" placeholder="" type="text">
+                                    <label for="frequencyInput">Frequency (min)</label>
+                                    <input class="form-control" id="frequencyInput" placeholder="" type="text">
                                 </div>
-                                <button class="btn btn-danger float-right" id="add-train-btn">Submit</button>
+                                <button class="btn btn-danger float-right" id="addTrainBtn">Submit</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </section>
-
+            <footer>
+                <!-- Photo by Johannes Plenio from Pexels -->
+            </footer>
+        </section>
+    </div>
 
 
     <!-- jQuery & JS-Bootstrap-->

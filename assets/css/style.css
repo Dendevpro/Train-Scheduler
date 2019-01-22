@@ -3,7 +3,13 @@
 }
 
 body {
-    background: #222;
+    margin: 0;
+    padding: 0;
+}
+
+.img-responsive {
+    background-image: url("../images/BG-train-1.jpg");
+    -webkit-background-size: cover;
 }
 
 /* Elements */
@@ -12,8 +18,98 @@ i {
 }
 
 /* Jumbotron */
-.jumbotron {
-    margin-top: 2rem;
+.jumbotron-fluid {
+    margin-top: 3rem;
+    background: none;
+    height: 12rem;
 }
 
+#trainLogo {
+    width: 50%;
+    margin: 0 auto;
+}
+
+/* Schedule Card */
+/* Table */
+#trainTable {
+    border-collapse: collapse;
+    width: 100%;
+    /* border-radius: 10px; */
+}
+
+#trainTable td,
+#trainTable th {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+#trainTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#trainTable tr:hover {
+    background-color: #ddd;
+}
+
+#trainTable th {
+    height: 50px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #dc3545!important;
+    color: white;
+}
+
+#trainTable #times {
+    text-align: center;
+}
+
+.card-header {
+    background:#991220 !important;
+}
+
+/* TIMER */
 /* Card */
+#timeColumn {
+    margin: 1rem 0 0 auto;
+    /* margin: 0 0 1rem auto; */
+} 
+
+#timeCard  {
+    background: none;
+    border: .1rem solid white;
+}
+
+#timeText {
+    font-weight: initial;
+    font-size: 20px;
+}
+
+#currentTime {
+    margin-top: .4rem;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Small devices (portrait phones, 576px and less) */
+@media (max-width: 576px) {
+ 
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    #trainLogo {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    #trainLogo {
+        width: 70%;
+        margin: 0 auto;
+    }
+}
