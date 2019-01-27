@@ -11,7 +11,6 @@ firebase.initializeApp(config);
 
 var database = firebase.database().ref();
 
-// var trainData = firebase.database().ref();
 //Shows user the current time
 $("#currentTime").append(moment().format("HH:mm"));
 
@@ -21,12 +20,12 @@ $("#addTrainBtn").on('click', function (event) {
     event.preventDefault();
     // Grabs user input
     // and saves as variable
-    var trainName = $("#nameInput").val();
-    var destination = $("#destinationInput").val();
-    var firstTrain = $("#firstTrainInput").val();
-    var frequency = $("#frequencyInput").val();
+    var trainName = $("#nameInput").val().trim();
+    var destination = $("#destinationInput").val().trim();
+    var firstTrain = moment($("#firstTrainInput").val().trim(), "HH:mm").subtract(3, "years").format("X");
+    var frequency = $("#frequencyInput").val().trim();
 
-    // Creates local "temporary" object for holding train data
+    // Creates local object for holding train data
     var newTrain = {
         name: trainName,
         destination: destination,
@@ -35,15 +34,39 @@ $("#addTrainBtn").on('click', function (event) {
     }
 
     // Uploads train data to the database
-    console.log(newTrain);
     database.push(newTrain);
 
+    // Clear out the input fields
     $("#nameInput").val("");
     $("#destinationInput").val("");
     $("#firstTrainInput").val("");
     $("#frequencyInput").val("");
-
-    return false;
-
 });
+
+// Create Firebase event to add trains to the DB
+// then append table content according to user input
+database.on('child_added', function (snapshot) {
+    var data = snapshot.val();
+    var trainNames = data.name;
+    var trainDestin = data.destination;
+    var trainFreq = data.frequency;
+    var theFirstTrain = data.firstTrain;
+
+    // Calculate minutes until arrival
+    // Take the current time in UNIX and subtract the Train First Arrival Time
+    var tLeft = moment().diff(moment.unix(theFirstTrain), "minutes") % trainFreq;
+    var tMinutes = trainFreq - tLeft;
+    console.log(tMinutes);
+
+    // Calculate the arrival time
+    // and add minutes to the current time
+    var trainArrival = moment().add(tMinutes, "m").format("HH:mm");
+
+    // Add each train data into the table
+    $("#trainTable > tbody").append("<tr><td>" + trainNames + "</td><td>" + trainDestin + "</td><td class='min'>" + trainFreq + "</td><td class='min'>" + trainArrival + "</td><td class='min'>" + tMinutes + "</td></tr>")
+});
+
+setInterval(function () {
+    window.location.reload();
+}, 60000);
 

@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    line-height: 1.2;
 }
 
 body {
@@ -9,7 +10,11 @@ body {
 
 .img-responsive {
     background-image: url("../images/BG-train-1.jpg");
-    -webkit-background-size: cover;
+    background: linear-gradient(to bottom, rgba(143, 62, 0, 0.5), rgba(255, 255, 255, 0)), url("../images/BG-train-1.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Elements */
@@ -31,16 +36,9 @@ i {
 
 /* Schedule Card */
 /* Table */
-#trainTable {
-    border-collapse: collapse;
-    width: 100%;
-    /* border-radius: 10px; */
-}
-
 #trainTable td,
 #trainTable th {
-    border: 1px solid #ddd;
-    padding: 10px;
+    margin: .6rem auto;
 }
 
 #trainTable tr:nth-child(even) {
@@ -52,12 +50,13 @@ i {
 }
 
 #trainTable th {
-    height: 50px;
-    padding-top: 12px;
-    padding-bottom: 12px;
     text-align: left;
     background-color: #dc3545!important;
     color: white;
+}
+
+.min {
+    text-align: center;
 }
 
 #trainTable #times {
@@ -72,7 +71,6 @@ i {
 /* Card */
 #timeColumn {
     margin: 1rem 0 0 auto;
-    /* margin: 0 0 1rem auto; */
 } 
 
 #timeCard  {
@@ -92,24 +90,59 @@ i {
     text-align: center;
 }
 
-/* Small devices (portrait phones, 576px and less) */
-@media (max-width: 576px) {
- 
-}
+/* mediaquery fixed the table content from going out of the card bounds  on small devices*/
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px)  {
 
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) and (max-width: 767.98px) {
+    * {
+        text-align: center;
+    }
+
+    .jumbotron-fluid {
+        height: 4rem;
+        margin-bottom: 2rem;
+    }
+
     #trainLogo {
         width: 70%;
         margin: 0 auto;
     }
 
-}
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
 
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-    #trainLogo {
-        width: 70%;
-        margin: 0 auto;
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        margin: 0 0 1rem 0;
+    }
+
+    tr:nth-child(odd) {
+        background: #ccc;
+    }
+
+    td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 0;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
     }
 }
